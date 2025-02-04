@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liste des Lots</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+<h2>Liste des Lots</h2>
+
+<form action="/lots" method="get">
+    <label for="site">Site:</label>
+    <input type="text" id="site" name="site">
+    <label for="produit">Produit:</label>
+    <input type="text" id="produit" name="produit">
+    <button type="submit">Filtrer</button>
+</form>
+
+
+
+<hr>
+
+<table>
+    <thead>
+    <tr>
+        <th>Produit</th>
+        <th>Numéro Lot</th>
+        <th>Synthétiseur Utilisé</th>
+        <th>Date Réception CQ</th>
+        <th>Site</th>
+        <th>Date Réalisation</th>
+        <th>Numéro de flacon</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="lot : ${lots}">
+        <td th:text="${lot.produit}"></td>
+        <td th:text="${lot.numeroLot}"></td>
+        <td th:text="${lot.synthetiseurUtilise}"></td>
+        <td th:text="${lot.dateReceptionCQ}"></td>
+        <td th:text="${lot.site}"></td>
+        <td th:text="${lot.dateRealisation}"></td>
+        <td th:text="${lot.numeroFlacon}"></td>
+    </tr>
+    </tbody>
+</table>
+
+<hr>
+<table>
+    <thead>
+    <tr>
+        <th>Produit</th>
+        <th>Avancement</th>
+        <th>Date de lancement</th>
+        <th>Référence</th>
+        <th>Site</th>
+        <th>Type de CC</th>
+        <th>Classification</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="changeControl : ${changeControls}">
+        <td th:text="${changeControl.produit}"></td>
+        <td th:text="${changeControl.avancement}"></td>
+        <td th:text="${changeControl.dateLancement}"></td>
+        <td th:text="${changeControl.reference}"></td>
+        <td th:text="${changeControl.site}"></td>
+        <td th:text="${changeControl.typeCc}"></td>
+        <td th:text="${changeControl.classification}"></td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>
